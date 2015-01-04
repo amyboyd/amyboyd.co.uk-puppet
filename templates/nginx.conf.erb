@@ -1,0 +1,16 @@
+server {
+    server_name             <%= @baseHost %>;
+    listen                  80;
+    root                    /home/amyboyd.co.uk/project/dist;
+    client_max_body_size    20k;
+    server_tokens           off;
+    access_log              /home/amyboyd.co.uk/logs/access.log;
+    error_log               /home/amyboyd.co.uk/logs/errors.log;
+
+    if ($request_method != "GET" ) {
+        return 405;
+    }
+
+    rewrite ^/$ /index.html break;
+    rewrite ^/work$ /work.html break;
+}

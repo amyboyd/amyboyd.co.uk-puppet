@@ -1,0 +1,3 @@
+#!/bin/bash
+sudo puppet apply /home/amyboyd.co.uk/puppet/manifests/site.pp \
+    --modulepath /home/amyboyd.co.uk/puppet/modules/ $*

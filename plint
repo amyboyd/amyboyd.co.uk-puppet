@@ -1,0 +1,16 @@
+#!/bin/bash
+
+files=$( find . -type f | grep \.pp$ )
+exit_status=0
+
+for f in $files; do
+    errors=$( puppet-lint $f --no-80chars-check --no-arrow_alignment-check )
+    if [[ $errors != '' ]]; then
+        echo "$f:"
+        echo $errors
+        echo
+        exit_status=1
+    fi
+done
+
+exit $exit_status
