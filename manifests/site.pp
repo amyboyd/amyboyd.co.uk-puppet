@@ -4,6 +4,9 @@ Exec {
 
 if $::fqdn =~ /.*\.prod$/ {
     $serverEnv = 'prod'
+# The prod version of this site is currently hosted on Anastasia.
+} elsif $::fqdn =~ /[Aa]nastasia/ {
+    $serverEnv = 'prod'
 } elsif $::fqdn =~ /.*\.dev$/ {
     $serverEnv = 'dev'
 } else {
@@ -41,7 +44,7 @@ file { '/home/amyboyd.co.uk/logs':
 }
 
 file { '/etc/nginx/sites-enabled/amyboyd.co.uk.conf':
-    content => template('/home/amyboyd.co.uk/puppet/templates/nginx.conf.erb'),
+    content => template('nginx/nginx.conf.erb'),
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
